@@ -1,0 +1,241 @@
+.manage-complaints-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.page-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.page-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.page-header p {
+  margin: 0 0 20px 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.complaint-stats {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.stat-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-badge.pending {
+  background: rgba(251, 191, 36, 0.3);
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
+.stat-badge.progress {
+  background: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.stat-badge.resolved {
+  background: rgba(16, 185, 129, 0.3);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .manage-complaints-container {
+    padding: 10px;
+  }
+  
+  .page-header {
+    padding: 20px;
+  }
+  
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .complaint-stats {
+    flex-direction: column;
+  }
+  
+  .stat-badge {
+    text-align: center;
+  }
+}
+
+.manage-complaints-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.page-header p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-badge, .readonly-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  display: inline-block;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.complaints-list {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.empty-state {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  color: #718096;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.complaints-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.complaint-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.complaint-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.complaint-info {
+  flex: 1;
+}
+
+.complaint-title {
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+}
+
+.complaint-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.complaint-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.status-section {
+  flex-shrink: 0;
+}
+
+.card-content {
+  margin-bottom: 1.5rem;
+}
+
+.complaint-description {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.complaint-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.admin-controls {
+  border-top: 2px solid #e2e8f0;
+  padding-top: 1.5rem;
+  background: rgba(102, 126, 234, 0.05);
+  margin: 1rem -2rem -2rem -2rem;
+  padding: 1.5rem 2rem 2rem 2rem;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .manage-complaints-container {
+    padding: 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .complaint-card {
+    padding: 1.5rem;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .complaint-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

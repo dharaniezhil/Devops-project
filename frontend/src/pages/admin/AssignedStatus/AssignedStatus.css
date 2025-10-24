@@ -1,0 +1,25 @@
+/* AssignedStatus.css */
+.as-container { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+.as-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.as-header h1 { margin: 0; font-size: 24px; color: var(--text-primary); }
+.as-header p { margin: 4px 0 0; color: var(--text-secondary); font-size: 14px; }
+
+.as-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.as-input { padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--background-white); color: var(--text-primary); }
+.as-btn { padding: 10px 12px; border: none; border-radius: 8px; background: var(--primary-color); color: #fff; cursor: pointer; }
+.as-btn:hover { background: var(--primary-dark); }
+.as-toggle { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 14px; }
+
+.as-alert { padding: 10px 12px; border-radius: 8px; margin: 8px 0; }
+.as-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+.as-table-wrap { overflow-x: auto; background: var(--background-white); border: 1px solid var(--border-color); border-radius: 8px; }
+.as-table { width: 100%; border-collapse: collapse; }
+.as-table thead th { text-align: left; padding: 12px; border-bottom: 1px solid var(--border-color); background: var(--background-light); color: var(--text-primary); }
+.as-table tbody td { padding: 12px; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
+.as-cell-center { text-align: center; color: var(--text-secondary); padding: 16px; }
+
+.as-badge { padding: 3px 10px; border-radius: 9999px; font-size: 12px; font-weight: 700; }
+.as-assigned { background: #eef2ff; color: #3730a3; border: 1px solid #e0e7ff; }
+.as-in-progress { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+.as-completed { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }

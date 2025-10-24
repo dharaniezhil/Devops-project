@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - FixItFast</title>
+    <link rel="stylesheet" href="style.css?v=2.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-gradient"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <!-- Theme Panel -->
+    <div id="themePanel" class="theme-panel">
+        <div class="panel-header">
+            <h3><i class="fas fa-palette"></i> Choose Theme</h3>
+            <button class="close-btn" onclick="toggleThemePanel()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="theme-grid">
+            <div class="theme-card" data-theme="light">
+                <div class="theme-preview theme-light"></div>
+                <span>Light</span>
+            </div>
+            <div class="theme-card" data-theme="dark">
+                <div class="theme-preview theme-dark"></div>
+                <span>Dark</span>
+            </div>
+            <div class="theme-card" data-theme="forest">
+                <div class="theme-preview theme-forest"></div>
+                <span>Forest</span>
+            </div>
+            <div class="theme-card" data-theme="sunrise">
+                <div class="theme-preview theme-sunrise"></div>
+                <span>Sunrise</span>
+            </div>
+            <div class="theme-card" data-theme="ocean">
+                <div class="theme-preview theme-ocean"></div>
+                <span>Ocean</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-container">
+        <!-- Modern Navigation -->
+        <nav class="profile-nav">
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <span class="brand-text">FixItFast</span>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="exportProfile()" title="Export Profile">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button class="nav-btn" onclick="shareProfile()" title="Share Profile">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="nav-btn theme-toggle" onclick="toggleThemePanel()" title="Change Theme">
+                    <i class="fas fa-palette"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Modern Header -->
+        <header class="modern-header">
+            <div class="header-background">
+                <div class="header-pattern"></div>
+                <div class="header-overlay"></div>
+            </div>
+            <div class="header-content">
+                <div class="profile-section-left">
+                    <div class="avatar-container">
+                        <div class="avatar-wrapper">
+                            <img id="profileImage" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Profile Picture">
+                            <div class="avatar-status online"></div>
+                            <button class="avatar-edit-btn" onclick="changeProfilePhoto()">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="completion-ring">
+                            <svg class="ring-svg" width="180" height="180">
+                                <circle class="ring-bg" cx="90" cy="90" r="75"></circle>
+                                <circle class="ring-progress" cx="90" cy="90" r="75" id="mainProgressRing"></circle>
+                            </svg>
+                            <div class="completion-text">
+                                <span class="completion-percent" id="mainCompletion">75%</span>
+                                <span class="completion-label">Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-section-right">
+                    <div class="profile-info">
+                        <h1 id="displayName" class="profile-name">John Doe</h1>
+                        <p class="profile-subtitle">Welcome back! Let's complete your profile</p>
+                        <div class="profile-badges">
+                            <span id="roleBadge" class="badge badge-role">
+                                <i class="fas fa-user"></i> General User
+                            </span>
+                            <span id="statusBadge" class="badge badge-status badge-active">
+                                <i class="fas fa-circle"></i> Active
+                            </span>
+                            <span class="badge badge-verified">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </span>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <div class="stat-value" id="complaintsLodged">5</div>
+                                <div class="stat-label">Complaints</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="complaintsResolved">3</div>
+                                <div class="stat-label">Resolved</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="memberDuration">8</div>
+                                <div class="stat-label">Months</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="joinedDate">Mar 2025</div>
+                                <div class="stat-label">Joined</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="action-btn primary" onclick="openQuickEdit()">
+                <i class="fas fa-edit"></i>
+                <div class="btn-content">
+                    <span class="btn-title">Quick Edit</span>
+                    <span class="btn-subtitle">Edit basic info</span>
+                </div>
+            </button>
+            <button class="action-btn" onclick="openPasswordModal()">
+                <i class="fas fa-shield-alt"></i>
+                <div class="btn-content">
+                    <span class="btn-title">Security</span>
+                    <span class="btn-subtitle">Password & 2FA</span>
+                </div>
+            </button>
+            <button class="action-btn" onclick="openSettings()">
+                <i class="fas fa-cog"></i>
+                <div class="btn-content">
+                    <span class="btn-title">Settings</span>
+                    <span class="btn-subtitle">Preferences</span>
+                </div>
+            </button>
+            <button class="action-btn" onclick="viewActivity()">
+                <i class="fas fa-chart-line"></i>
+                <div class="btn-content">
+                    <span class="btn-title">Activity</span>
+                    <span class="btn-subtitle">View history</span>
+                </div>
+            </button>
+        </div>
+
+        <!-- Modern Form -->
+        <form id="profileForm" class="modern-form">
+            <!-- Personal Information Section -->
+            <div class="form-section" data-section="personal">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="section-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="section-info">
+                            <h2>Personal Information</h2>
+                            <p>Your basic details and identification</p>
+                        </div>
+                    </div>
+                    <div class="section-progress">
+                        <div class="progress-ring">
+                            <svg width="50" height="50">
+                                <circle class="ring-bg" cx="25" cy="25" r="20"></circle>
+                                <circle class="ring-progress" cx="25" cy="25" r="20" data-section="personal"></circle>
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="input-card">
+                        <div class="card-header">
+                            <i class="fas fa-id-card"></i>
+                            <span>Identity</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group floating">
+                                <input type="text" id="fullName" name="fullName" required>
+                                <label for="fullName">Full Name *</label>
+                                <span class="form-line"></span>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group floating">
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Email Address *</label>
+                                <span class="form-line"></span>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group floating">
+                                <input type="date" id="dateOfBirth" name="dateOfBirth">
+                                <label for="dateOfBirth">Date of Birth</label>
+                                <span class="form-line"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-card">
+                        <div class="card-header">
+                            <i class="fas fa-user-tag"></i>
+                            <span>Role & Status</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label for="role">Role *</label>
+                                <div class="select-wrapper">
+                                    <select id="role" name="role" required>
+                                        <option value="">Select Role</option>
+                                        <option value="labour">Labour</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="general">General User</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="accountStatus">Account Status *</label>
+                                <div class="select-wrapper">
+                                    <select id="accountStatus" name="accountStatus" required>
+                                        <option value="">Select Status</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="pending">Pending Verification</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information Section -->
+            <div class="form-section" data-section="contact">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="section-icon">
+                            <i class="fas fa-address-book"></i>
+                        </div>
+                        <div class="section-info">
+                            <h2>Contact Information</h2>
+                            <p>How we can reach you</p>
+                        </div>
+                    </div>
+                    <div class="section-progress">
+                        <div class="progress-ring">
+                            <svg width="50" height="50">
+                                <circle class="ring-bg" cx="25" cy="25" r="20"></circle>
+                                <circle class="ring-progress" cx="25" cy="25" r="20" data-section="contact"></circle>
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="input-card">
+                        <div class="card-header">
+                            <i class="fas fa-phone"></i>
+                            <span>Phone Numbers</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group floating">
+                                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                                <label for="phoneNumber">Phone Number *</label>
+                                <span class="form-line"></span>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group floating">
+                                <input type="text" id="emergencyContact" name="emergencyContact">
+                                <label for="emergencyContact">Emergency Contact</label>
+                                <span class="form-line"></span>
+                                <span class="help-text">Name & phone number</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-card">
+                        <div class="card-header">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Address</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group floating full-width">
+                                <input type="text" id="address" name="address">
+                                <label for="address">Street Address</label>
+                                <span class="form-line"></span>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <div class="select-wrapper">
+                                        <select id="country" name="country">
+                                            <option value="">Select Country</option>
+                                            <option value="india">🇮🇳 India</option>
+                                            <option value="usa">🇺🇸 United States</option>
+                                            <option value="uk">🇬🇧 United Kingdom</option>
+                                            <option value="canada">🇨🇦 Canada</option>
+                                            <option value="australia">🇦🇺 Australia</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group floating">
+                                    <input type="text" id="state" name="state">
+                                    <label for="state">State/Province</label>
+                                    <span class="form-line"></span>
+                                </div>
+                                <div class="form-group floating">
+                                    <input type="text" id="city" name="city">
+                                    <label for="city">City</label>
+                                    <span class="form-line"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links Section -->
+            <div class="form-section" data-section="social">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="section-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="section-info">
+                            <h2>Social Links</h2>
+                            <p>Connect your social profiles</p>
+                        </div>
+                    </div>
+                    <div class="section-progress">
+                        <div class="progress-ring">
+                            <svg width="50" height="50">
+                                <circle class="ring-bg" cx="25" cy="25" r="20"></circle>
+                                <circle class="ring-progress" cx="25" cy="25" r="20" data-section="social"></circle>
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cards-grid single-card">
+                    <div class="input-card">
+                        <div class="card-content">
+                            <div class="social-input">
+                                <div class="social-icon whatsapp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="form-group floating">
+                                    <input type="url" id="whatsappLink" name="whatsappLink">
+                                    <label for="whatsappLink">WhatsApp Link</label>
+                                    <span class="form-line"></span>
+                                </div>
+                            </div>
+                            <div class="social-input">
+                                <div class="social-icon linkedin">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <div class="form-group floating">
+                                    <input type="url" id="linkedinProfile" name="linkedinProfile">
+                                    <label for="linkedinProfile">LinkedIn Profile</label>
+                                    <span class="form-line"></span>
+                                </div>
+                            </div>
+                            <div class="social-input">
+                                <div class="social-icon other">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <div class="form-group floating">
+                                    <input type="text" id="otherLinks" name="otherLinks">
+                                    <label for="otherLinks">Other Links</label>
+                                    <span class="form-line"></span>
+                                    <span class="help-text">Telegram, Email, etc.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences Section -->
+            <div class="form-section" data-section="preferences">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="section-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <div class="section-info">
+                            <h2>Preferences</h2>
+                            <p>Customize your experience</p>
+                        </div>
+                    </div>
+                    <div class="section-progress">
+                        <div class="progress-ring">
+                            <svg width="50" height="50">
+                                <circle class="ring-bg" cx="25" cy="25" r="20"></circle>
+                                <circle class="ring-progress" cx="25" cy="25" r="20" data-section="preferences"></circle>
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="input-card">
+                        <div class="card-header">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="toggle-group">
+                                <div class="toggle-item">
+                                    <div class="toggle-info">
+                                        <i class="fas fa-envelope"></i>
+                                        <div>
+                                            <span class="toggle-label">Email Notifications</span>
+                                            <span class="toggle-desc">Receive updates via email</span>
+                                        </div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="emailNotifications" name="emailNotifications">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-item">
+                                    <div class="toggle-info">
+                                        <i class="fas fa-sms"></i>
+                                        <div>
+                                            <span class="toggle-label">SMS Notifications</span>
+                                            <span class="toggle-desc">Text message alerts</span>
+                                        </div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="smsNotifications" name="smsNotifications">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-item">
+                                    <div class="toggle-info">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <div>
+                                            <span class="toggle-label">App Notifications</span>
+                                            <span class="toggle-desc">Push notifications</span>
+                                        </div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="appNotifications" name="appNotifications">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-card">
+                        <div class="card-header">
+                            <i class="fas fa-language"></i>
+                            <span>Language & Theme</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label for="preferredLanguage">Preferred Language</label>
+                                <div class="select-wrapper">
+                                    <select id="preferredLanguage" name="preferredLanguage">
+                                        <option value="">Select Language</option>
+                                        <option value="en">🇺🇸 English</option>
+                                        <option value="hi">🇮🇳 Hindi</option>
+                                        <option value="ta">🇮🇳 Tamil</option>
+                                        <option value="te">🇮🇳 Telugu</option>
+                                        <option value="kn">🇮🇳 Kannada</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div class="theme-selector">
+                                <label>Theme Preference</label>
+                                <div class="theme-options">
+                                    <label class="theme-option">
+                                        <input type="radio" name="theme" value="light" checked>
+                                        <div class="theme-preview theme-light"></div>
+                                        <span>Light</span>
+                                    </label>
+                                    <label class="theme-option">
+                                        <input type="radio" name="theme" value="dark">
+                                        <div class="theme-preview theme-dark"></div>
+                                        <span>Dark</span>
+                                    </label>
+                                    <label class="theme-option">
+                                        <input type="radio" name="theme" value="forest">
+                                        <div class="theme-preview theme-forest"></div>
+                                        <span>Forest</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Section -->
+            <div class="form-section" data-section="security">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="section-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="section-info">
+                            <h2>Security Settings</h2>
+                            <p>Protect your account</p>
+                        </div>
+                    </div>
+                    <div class="section-progress">
+                        <div class="progress-ring">
+                            <svg width="50" height="50">
+                                <circle class="ring-bg" cx="25" cy="25" r="20"></circle>
+                                <circle class="ring-progress" cx="25" cy="25" r="20" data-section="security"></circle>
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="input-card">
+                        <div class="card-header">
+                            <i class="fas fa-key"></i>
+                            <span>Password</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="security-item">
+                                <div class="security-info">
+                                    <h4>Change Password</h4>
+                                    <p>Update your account password for better security</p>
+                                </div>
+                                <button type="button" class="btn-outline" onclick="openPasswordModal()">
+                                    <i class="fas fa-key"></i>
+                                    Change
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-card">
+                        <div class="card-header">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Two-Factor Authentication</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="toggle-item">
+                                <div class="toggle-info">
+                                    <div>
+                                        <span class="toggle-label">Enable 2FA</span>
+                                        <span class="toggle-desc">Add extra security to your account</span>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorAuth" name="twoFactorAuth">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="verification-status">
+                                <div class="status-indicator">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="status-info">
+                                    <span class="status-label">Account Status</span>
+                                    <span class="status-value verified">Verified</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="resetForm()">
+                    <i class="fas fa-undo"></i>
+                    Reset Form
+                </button>
+                <button type="submit" class="btn-primary" id="saveBtn">
+                    <i class="fas fa-save"></i>
+                    Save Profile
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-backdrop" onclick="closePasswordModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shield-alt"></i> Change Password</h3>
+                <button class="close-btn" onclick="closePasswordModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="passwordForm" class="modal-form">
+                <div class="form-group floating">
+                    <input type="password" id="currentPassword" name="currentPassword" required>
+                    <label for="currentPassword">Current Password</label>
+                    <span class="form-line"></span>
+                    <button type="button" class="password-toggle" onclick="togglePassword('currentPassword')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="form-group floating">
+                    <input type="password" id="newPassword" name="newPassword" required>
+                    <label for="newPassword">New Password</label>
+                    <span class="form-line"></span>
+                    <button type="button" class="password-toggle" onclick="togglePassword('newPassword')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill"></div>
+                        </div>
+                        <span class="strength-text">Password Strength</span>
+                    </div>
+                </div>
+                <div class="form-group floating">
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <span class="form-line"></span>
+                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closePasswordModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Update Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-overlay">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <p>Saving your profile...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js?v=2.0"></script>
+</body>
+</html>

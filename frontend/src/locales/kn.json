@@ -1,0 +1,30 @@
+{
+  "welcome": "FixItFast ಗೆ ಸ್ವಾಗತ",
+  "registerComplaint": "ದೂರು ನೋಂದಾಯಿಸಿ",
+  "trackComplaint": "ದೂರು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ",
+  "login": "ಲಾಗಿನ್",
+  "logout": "ಲಾಗ್ಔಟ್",
+  
+  "navigation": {
+    "signIn": "ಸೈನ್ ಇನ್",
+    "register": "ನೋಂದಾವಣೆ೏ಸಿ",
+    "about": "ಕುರಿತು",
+    "contact": "ಸಂಪರ್ಕ"
+  },
+  
+  "hero": {
+    "title": "ನಿಮ್ಮ ಸಮುದಾಯದಲ್ಲಿ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳನ್ನು ರಿಪೋರ್ಟ್ ಮಾಡಿ",
+    "getStarted": "ಪ್ರಾರಂಭಿಸಿ",
+    "learnMore": "ಹೆಚ್ಚಿನ ತಿಳಿಯಿರಿ"
+  },
+  
+  "language": {
+    "select": "ಭಾಷೆ ಆಯ್ಕೆ೏ಸಿ",
+    "english": "English",
+    "tamil": "தமிழ்",
+    "hindi": "हिंदी",
+    "malayalam": "മലയാളം",
+    "telugu": "తెలుగు",
+    "kannada": "ಕನ್ನಡ"
+  }
+}

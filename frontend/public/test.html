@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Application Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .feature-list {
+            columns: 2;
+            column-gap: 20px;
+        }
+        .feature-list li {
+            break-inside: avoid;
+            margin-bottom: 5px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-ok {
+            background: #28a745;
+        }
+        .status-warning {
+            background: #ffc107;
+        }
+        .status-error {
+            background: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 FixItFast Profile Application Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>📋 Application Overview</h2>
+        <p>This test page verifies all features of the User Profile application. The main application can be accessed at <a href="index.html" target="_blank">index.html</a></p>
+        
+        <h3>✅ Features Implemented</h3>
+        <ul class="feature-list">
+            <li><span class="status-indicator status-ok"></span>Personal Information Section</li>
+            <li><span class="status-indicator status-ok"></span>Contact Information Section</li>
+            <li><span class="status-indicator status-ok"></span>Social Links Section</li>
+            <li><span class="status-indicator status-ok"></span>Preferences & Notifications</li>
+            <li><span class="status-indicator status-ok"></span>Security & Account Settings</li>
+            <li><span class="status-indicator status-ok"></span>Profile Completion & Activity</li>
+            <li><span class="status-indicator status-ok"></span>Responsive Design (Mobile/Tablet/Desktop)</li>
+            <li><span class="status-indicator status-ok"></span>5 Theme Options (Light/Dark/Forest/Sunrise/Ocean)</li>
+            <li><span class="status-indicator status-ok"></span>Real-time Form Validation</li>
+            <li><span class="status-indicator status-ok"></span>Progress Tracking (Per Section & Overall)</li>
+            <li><span class="status-indicator status-ok"></span>Auto-save Functionality</li>
+            <li><span class="status-indicator status-ok"></span>Password Change Modal</li>
+            <li><span class="status-indicator status-ok"></span>Profile Photo Upload</li>
+            <li><span class="status-indicator status-ok"></span>MongoDB Atlas Integration</li>
+            <li><span class="status-indicator status-ok"></span>LocalStorage Fallback</li>
+            <li><span class="status-indicator status-ok"></span>RESTful API Endpoints</li>
+            <li><span class="status-indicator status-ok"></span>Error Handling & User Feedback</li>
+            <li><span class="status-indicator status-ok"></span>Accessibility Features</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🌐 Server Status</h2>
+        <div id="serverStatus">
+            <p>Testing server connection...</p>
+        </div>
+        <button onclick="testServer()">Test Server Connection</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🎨 Theme Testing</h2>
+        <p>Test all available themes:</p>
+        <button onclick="setTheme('light')">Light Theme</button>
+        <button onclick="setTheme('dark')">Dark Theme</button>
+        <button onclick="setTheme('forest')">Forest Theme</button>
+        <button onclick="setTheme('sunrise')">Sunrise Theme</button>
+        <button onclick="setTheme('ocean')">Ocean Theme</button>
+        <div id="themeStatus" class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📱 Responsive Testing</h2>
+        <p>Test the application at different screen sizes:</p>
+        <button onclick="openInNewWindow(320, 568)">Mobile (320x568)</button>
+        <button onclick="openInNewWindow(768, 1024)">Tablet (768x1024)</button>
+        <button onclick="openInNewWindow(1200, 800)">Desktop (1200x800)</button>
+        <div id="responsiveStatus" class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔧 API Testing</h2>
+        <p>Test API endpoints:</p>
+        <button onclick="testHealthEndpoint()">Health Check</button>
+        <button onclick="testProfileCreation()">Create Test Profile</button>
+        <button onclick="testProfileRetrieval()">Get Current Profile</button>
+        <div id="apiStatus" class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>💾 Local Storage Testing</h2>
+        <p>Test local storage functionality:</p>
+        <button onclick="testLocalStorage()">Test Local Storage</button>
+        <button onclick="clearLocalStorage()">Clear Local Storage</button>
+        <div id="storageStatus" class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Database Schema</h2>
+        <div class="test-result">
+            <h4>Collection: profiles (Database: fixitfast)</h4>
+            <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto;">
+{
+  "_id": "ObjectId",
+  "fullName": "string*",
+  "email": "string*", 
+  "dateOfBirth": "string",
+  "role": "labour|admin|general*",
+  "accountStatus": "active|inactive|pending*",
+  "phoneNumber": "string*",
+  "emergencyContact": "string",
+  "address": "string",
+  "country": "string",
+  "state": "string", 
+  "city": "string",
+  "whatsappLink": "string",
+  "linkedinProfile": "string",
+  "otherLinks": "string",
+  "emailNotifications": "boolean",
+  "smsNotifications": "boolean", 
+  "appNotifications": "boolean",
+  "preferredLanguage": "string",
+  "theme": "light|dark|forest|sunrise|ocean",
+  "twoFactorAuth": "boolean",
+  "createdAt": "ISO Date",
+  "lastUpdated": "ISO Date",
+  "profileVersion": "number",
+  "activityStats": {
+    "complaintsLodged": "number",
+    "complaintsResolved": "number", 
+    "complaintsPending": "number",
+    "joinedDate": "ISO Date"
+  }
+}</pre>
+            <p><small>* = Required fields</small></p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🚀 Quick Start Instructions</h2>
+        <div class="test-result">
+            <ol>
+                <li><strong>Install Dependencies:</strong> <code>npm install</code></li>
+                <li><strong>Configure MongoDB:</strong> Update <code>.env</code> with your MongoDB Atlas credentials</li>
+                <li><strong>Start Server:</strong> <code>npm start</code> or <code>npm run dev</code></li>
+                <li><strong>Access Application:</strong> Open <code>http://localhost:3000</code></li>
+                <li><strong>Test Features:</strong> Fill out the profile form and test all sections</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Test server connection
+        async function testServer() {
+            const statusDiv = document.getElementById('serverStatus');
+            statusDiv.innerHTML = '<p>Testing server connection...</p>';
+            
+            try {
+                const response = await fetch('/api/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.innerHTML = `
+                        <div class="test-result success">
+                            <strong>✅ Server Online</strong><br>
+                            Status: ${data.message}<br>
+                            Database: ${data.database}<br>
+                            Timestamp: ${data.timestamp}
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Server responded with error');
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="test-result warning">
+                        <strong>⚠️ Server Offline</strong><br>
+                        Please start the server with: <code>npm start</code><br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test themes
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            document.getElementById('themeStatus').innerHTML = `
+                <div class="test-result success">
+                    <strong>✅ Theme Applied:</strong> ${theme.charAt(0).toUpperCase() + theme.slice(1)}
+                </div>
+            `;
+        }
+
+        // Test responsive design
+        function openInNewWindow(width, height) {
+            const url = 'index.html';
+            const features = `width=${width},height=${height},resizable=yes,scrollbars=yes`;
+            window.open(url, 'ResponsiveTest', features);
+            
+            document.getElementById('responsiveStatus').innerHTML = `
+                <div class="test-result success">
+                    <strong>✅ Opened in new window:</strong> ${width}x${height}px
+                </div>
+            `;
+        }
+
+        // Test health endpoint
+        async function testHealthEndpoint() {
+            const statusDiv = document.getElementById('apiStatus');
+            
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                
+                statusDiv.innerHTML = `
+                    <div class="test-result success">
+                        <strong>✅ Health Endpoint Working</strong><br>
+                        Response: ${JSON.stringify(data, null, 2)}
+                    </div>
+                `;
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="test-result error">
+                        <strong>❌ Health Endpoint Failed</strong><br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test profile creation
+        async function testProfileCreation() {
+            const statusDiv = document.getElementById('apiStatus');
+            
+            const testProfile = {
+                fullName: 'Test User',
+                email: 'test@example.com',
+                role: 'general',
+                accountStatus: 'active',
+                phoneNumber: '+91 9876543210',
+                dateOfBirth: '1990-01-01',
+                theme: 'light'
+            };
+
+            try {
+                const response = await fetch('/api/profiles', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testProfile)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.innerHTML = `
+                        <div class="test-result success">
+                            <strong>✅ Profile Created Successfully</strong><br>
+                            Profile ID: ${data.profileId}<br>
+                            Message: ${data.message}
+                        </div>
+                    `;
+                } else {
+                    const errorData = await response.json();
+                    statusDiv.innerHTML = `
+                        <div class="test-result warning">
+                            <strong>⚠️ Profile Creation Response</strong><br>
+                            Status: ${response.status}<br>
+                            Message: ${errorData.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="test-result error">
+                        <strong>❌ Profile Creation Failed</strong><br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test profile retrieval
+        async function testProfileRetrieval() {
+            const statusDiv = document.getElementById('apiStatus');
+            
+            try {
+                const response = await fetch('/api/profiles/current');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.innerHTML = `
+                        <div class="test-result success">
+                            <strong>✅ Profile Retrieved Successfully</strong><br>
+                            Profile Found: ${data.profile ? 'Yes' : 'No'}<br>
+                            ${data.profile ? `Name: ${data.profile.fullName}` : 'No profile data'}
+                        </div>
+                    `;
+                } else {
+                    const errorData = await response.json();
+                    statusDiv.innerHTML = `
+                        <div class="test-result warning">
+                            <strong>⚠️ Profile Retrieval Response</strong><br>
+                            Status: ${response.status}<br>
+                            Message: ${errorData.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="test-result error">
+                        <strong>❌ Profile Retrieval Failed</strong><br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test local storage
+        function testLocalStorage() {
+            const statusDiv = document.getElementById('storageStatus');
+            
+            try {
+                const testData = {
+                    fullName: 'Local Storage Test User',
+                    email: 'localstorage@test.com',
+                    timestamp: new Date().toISOString()
+                };
+
+                localStorage.setItem('testProfile', JSON.stringify(testData));
+                const retrieved = JSON.parse(localStorage.getItem('testProfile'));
+
+                if (retrieved && retrieved.fullName === testData.fullName) {
+                    statusDiv.innerHTML = `
+                        <div class="test-result success">
+                            <strong>✅ Local Storage Working</strong><br>
+                            Stored and retrieved test data successfully<br>
+                            Data: ${JSON.stringify(retrieved, null, 2)}
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Data mismatch');
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="test-result error">
+                        <strong>❌ Local Storage Failed</strong><br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Clear local storage
+        function clearLocalStorage() {
+            const statusDiv = document.getElementById('storageStatus');
+            
+            try {
+                localStorage.removeItem('testProfile');
+                localStorage.removeItem('userProfile');
+                localStorage.removeItem('preferredTheme');
+                
+                statusDiv.innerHTML = `
+                    <div class="test-result success">
+                        <strong>✅ Local Storage Cleared</strong><br>
+                        Removed all test and profile data
+                    </div>
+                `;
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="test-result error">
+                        <strong>❌ Clear Storage Failed</strong><br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize tests on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            testServer();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "welcome": "FixItFast కి స్వాగతం",
+  "registerComplaint": "ఫిర్యాదు నమోదు చేయండి",
+  "trackComplaint": "ఫిర్యాదు ట్రాక్ చేయండి",
+  "login": "లాగిన్",
+  "logout": "లాగౌట్",
+  
+  "navigation": {
+    "signIn": "సైన్ ఇన్",
+    "register": "రజిస్టర్ చెయ్యండి",
+    "about": "కురితం",
+    "contact": "సంపర్కం"
+  },
+  
+  "hero": {
+    "title": "మీ కమ్మునిటీలో నాగరిక సమస్యలను రిపోర్ట్ చెయ్యండి",
+    "getStarted": "ప్రారంభించండి",
+    "learnMore": "ఇన్ని తెలుసుకోండి"
+  },
+  
+  "language": {
+    "select": "భాష ఎనుకోండి",
+    "english": "English",
+    "tamil": "தமிழ்",
+    "hindi": "हिंदी",
+    "malayalam": "മലയാളം",
+    "telugu": "తెలుగు",
+    "kannada": "ಕನ್ನಡ"
+  }
+}

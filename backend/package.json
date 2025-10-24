@@ -1,0 +1,51 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "FixItFast Backend API",
+  "author": "Your Name",
+  "main": "src/server.js",
+  "license": "ISC",
+  "keywords": [
+    "express",
+    "mongodb",
+    "jwt",
+    "complaint-management"
+  ],
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "dev:atlas": "NODE_ENV=development nodemon src/server.js",
+    "prod:atlas": "NODE_ENV=production node src/server.js",
+    "seed:superadmin": "node scripts/seedSuperAdmin.js",
+    "seed:admins-superadmin": "node scripts/seedSuperAdminAdmins.js",
+    "fix:admin-pw": "node scripts/fixAdminPassword.js",
+    "fix:superadmin-pw": "node scripts/fixSuperAdminPassword.js",
+    "create:temp-admin": "node scripts/createTempAdmin.js",
+    "migrate:admin-city": "node scripts/migrateAdminCity.js",
+    "test:admin-auth": "node test-admin-temp-password.js",
+    "test:login-after-change": "node test-login-after-password-change.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.7.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.0.1",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.0.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.6",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pdfkit": "^0.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
